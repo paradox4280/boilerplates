@@ -1,0 +1,13 @@
+version: "3.5"
+
+services:
+  cti:
+    image: cti:1.0
+    container_name: steamfarm
+    ports:
+     - "4862:3322"
+    volumes:
+     - /home/nn/steamfarm/main/config:/app/config
+     - /home/nn/steamfarm/main/logs:/app/logs
+     - /home/nn/steamfarm/main/plugins:/app/plugins
+    restart: always
