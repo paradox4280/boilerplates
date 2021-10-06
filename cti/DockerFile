@@ -1,0 +1,7 @@
+FROM mcr.microsoft.com/dotnet/runtime:5.0
+WORKDIR /app
+COPY es .
+EXPOSE 3322
+VOLUME ["/app/config", "/app/logs", "/app/plugins"]
+HEALTHCHECK CMD ["pidof", "-s", "ArchiSteamFarm"]
+ENTRYPOINT ["sh", "ArchiSteamFarm-Service.sh", "--no-restart", "--process-required", "--system-required"]
