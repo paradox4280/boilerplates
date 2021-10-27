@@ -1,13 +1,20 @@
+---
 version: "3.5"
 
 services:
-  cti:
-    image: cti:1.0
-    container_name: steamfarm
+  archisteamfarm:
+    image: justarchi/archisteamfarm
+    container_name: archisteamfarm
+    networks:
+      - fnk
     ports:
-     - "4862:3322"
+     - "4862:1242"
     volumes:
-     - /home/nn/steamfarm/main/config:/app/config
-     - /home/nn/steamfarm/main/logs:/app/logs
-     - /home/nn/steamfarm/main/plugins:/app/plugins
+     - /opt/archisteamfarm/0/config:/app/config
+     - /opt/archisteamfarm/0/logs:/app/logs
+     - /opt/archisteamfarm/0/plugins:/app/plugins
     restart: always
+
+networks:
+  fnk:
+    external: true
