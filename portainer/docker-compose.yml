@@ -1,15 +1,23 @@
+---
 version: "3.5"
 
 services:
   portainer:
+    container_name: portainer
     image: portainer/portainer-ce
+    networks:
+      - fnk
     ports:
-     - "8001:8000"
-     - "3322:9000"
+     - "9000:9000"
     volumes:
-     - portainer_1:/data
      - /var/run/docker.sock:/var/run/docker.sock
-     - /var/lib/docker/volumes:/var/lib/docker/volumes
+     - portainer_data:/data
     restart: always
+
 volumes:
-  portainer_1:
+   portainer_data:
+     external: true
+
+networks:
+  fnk:
+    external: true
