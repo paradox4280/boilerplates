@@ -1,0 +1,27 @@
+---
+version: "3.7"
+
+services:
+  caddy:
+    image: caddy:2.4.5-alpine
+    container_name: caddy
+    restart: unless-stopped
+    networks:
+     - fnk
+    ports:
+      - "443:443"
+    volumes:
+      - /opt/caddy/Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+
+volumes:
+  caddy_data:
+    external: true
+  caddy_config:
+    external: true
+
+
+networks:
+  fnk:
+    external: true
