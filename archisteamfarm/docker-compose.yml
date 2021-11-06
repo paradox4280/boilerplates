@@ -1,0 +1,35 @@
+---
+version: "3.5"
+
+services:
+  asf:
+    image: justarchi/archisteamfarm
+    container_name: archisteamfarm
+    hostname: asf
+    environment:
+      - ASF_ARGS=--server
+    networks:
+      - fdn
+    ports:
+      - 1242:1242
+    volumes:
+      - /opt/archisteamfarm/0/config:/app/config
+      - /opt/archisteamfarm/0/logs:/app/logs
+      - /opt/archisteamfarm/0/plugins:/app/plugins
+    restart: always
+  asfbot:
+    image: dmcallejo/asfbot
+    container_name: asfbot
+    hostname: asfbot
+    networks:
+      - fdn
+    restart: unless-stopped
+    command: --host asf
+    environment:
+      - TELEGRAM_BOT_TOKEN=1958767537:AAG-Wlc2FbPbYoOHBUiEuzr4vw0k79vu-cs
+      - TELEGRAM_USER_ALIAS=@c2fix
+      - ASF_IPC_PORT=1242
+      
+networks:
+  fdn:
+    external: true
