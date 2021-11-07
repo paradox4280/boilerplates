@@ -13,9 +13,9 @@ services:
     ports:
       - 1242:1242
     volumes:
-      - /opt/archisteamfarm/0/config:/app/config
-      - /opt/archisteamfarm/0/logs:/app/logs
-      - /opt/archisteamfarm/0/plugins:/app/plugins
+      - /pkgtk/archisteamfarm/0/config:/app/config
+      - /pkgtk/archisteamfarm/0/logs:/app/logs
+      - /pkgtk/archisteamfarm/0/plugins:/app/plugins
     restart: always
   asfbot:
     image: dmcallejo/asfbot
