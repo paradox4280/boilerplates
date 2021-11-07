@@ -1,0 +1,11 @@
+---
+version: "3.5"
+services:
+  guac:
+    image: oznu/guacamole
+    container_name: guacmole
+    ports:
+      - 1122:8080
+    volumes:
+      - /pkgtk/guacmole:/config
+    restart: unless-stopped

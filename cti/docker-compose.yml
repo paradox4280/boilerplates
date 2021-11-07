@@ -10,9 +10,9 @@ services:
     ports:
      - "4862:1242"
     volumes:
-     - /opt/archisteamfarm/0/config:/app/config
-     - /opt/archisteamfarm/0/logs:/app/logs
-     - /opt/archisteamfarm/0/plugins:/app/plugins
+     - /pkgtk/archisteamfarm/config:/app/config
+     - /pkgtk/archisteamfarm/logs:/app/logs
+     - /pkgtk/archisteamfarm/plugins:/app/plugins
     restart: always
 
 networks:
