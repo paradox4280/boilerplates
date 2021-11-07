@@ -1,0 +1,13 @@
+---
+version: "3.5"
+
+services:
+  droppy:
+    container_name: droppy
+    image: silverwind/droppy
+    ports:
+     - "2322:8989"
+    volumes:
+     - /pkgtk/Droppy:/config
+     - /pkgtk/Droppy/files:/files
+    restart: unless-stopped
