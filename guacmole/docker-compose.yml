@@ -2,11 +2,17 @@
 version: "3.5"
 
 services:
-  guac:
+  guacmole:
     image: oznu/guacamole
     container_name: guacmole
+    networks:
+      - dnr
     ports:
-      - 1122:8080
+      - 7952:8080
     volumes:
       - /pkgtk/guacmole:/config
     restart: unless-stopped
+    
+networks:
+  dnr:
+    external: true
