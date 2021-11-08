@@ -3,7 +3,7 @@ version: "2.1"
 
 services:
   qbittorrent:
-    image: linuxserver/qbittorrent
+    image: lscr.io/linuxserver/qbittorrent
     container_name: qbittorrent
     environment:
       - PUID=1000
