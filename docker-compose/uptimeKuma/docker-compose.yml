@@ -1,0 +1,13 @@
+version: "3.5"
+
+services:
+  uptimekuma:
+    image: louislam/uptime-kuma
+    contianer_name: uptimekuma
+    ports:
+      - 3340:3001
+    volumes:
+      - /pkgtk/uptimeKuma/data:/app/data
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
