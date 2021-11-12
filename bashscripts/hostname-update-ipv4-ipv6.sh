@@ -1,0 +1,1 @@
+echo url="https://api.dynu.com/nic/update?hostname=HOSTNAME&password=PASSWORD&myipv4=$(curl -s -4 ifconfig.co)&myipv6=IPv6=$(curl -s -6 ifconfig.co)" | curl -k -o ~/dynu.log -K - 
