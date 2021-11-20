@@ -5,8 +5,6 @@ services:
   app:
     container_name: nginx-proxy-manager
     image: jc21/nginx-proxy-manager:latest
-    networks:
-      - nginx-proxy-network
     ports:
       #- '80:80'
       - '81:81'
@@ -18,21 +16,21 @@ services:
       DB_MYSQL_PASSWORD: "npm"
       DB_MYSQL_NAME: "npm"
     volumes:
-      - /pkgtk/nginx-proxy-manager/data:/data
-      - /pkgtk/nginx-proxy-manager/letsencrypt:/etc/letsencrypt
+      - pkgtk/nginx-proxy-manager/data:/data
+      - pkgtk/nginx-proxy-manager/letsencrypt:/etc/letsencrypt
   db:
     container_name: ngnix-proxy-manager-db
     image: jc21/mariadb-aria:latest
     networks:
-      - nginx-proxy-manager
+      - nginx-proxy-network
     environment:
       MYSQL_ROOT_PASSWORD: 'npm'
       MYSQL_DATABASE: 'npm'
       MYSQL_USER: 'npm'
       MYSQL_PASSWORD: 'npm'
     volumes:
-      - ./data/mysql:/var/lib/mysql
+      - /pkgtk/nginx-proxy-manager/data/mysql:/var/lib/mysql
 
 networks:
-  nginx-proxy-manager:
+  nginx-proxy-network:
     external: true
