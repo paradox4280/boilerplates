@@ -13,9 +13,9 @@ services:
     ports:
       - 1242:1242
     volumes:
-      - /pkgtk/archisteamfarm/0/config:/app/config
-      - /pkgtk/archisteamfarm/0/logs:/app/logs
-      - /pkgtk/archisteamfarm/0/plugins:/app/plugins
+      - /pkgtk/archisteamfarm/config:/app/config
+      - /pkgtk/archisteamfarm/logs:/app/logs
+      - /pkgtk/archisteamfarm/plugins:/app/plugins
     restart: always
   asfbot:
     image: dmcallejo/asfbot
@@ -26,8 +26,9 @@ services:
     restart: unless-stopped
     command: --host asf
     environment:
-      - TELEGRAM_BOT_TOKEN=1958767537:AAG-Wlc2FbPbYoOHBUiEuzr4vw0k79vu-cs
-      - TELEGRAM_USER_ALIAS=@c2fix
+      - TELEGRAM_BOT_TOKEN=
+      - TELEGRAM_USER_ALIAS=
+      - ASF_IPC_PASSWORD=
       - ASF_IPC_PORT=1242
       
 networks:
