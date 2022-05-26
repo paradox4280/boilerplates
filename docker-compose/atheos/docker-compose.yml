@@ -1,0 +1,15 @@
+---
+version: "3.5"
+services:
+  atheos:
+    image: hlsiira/atheos
+    container_name: atheos
+    networks:
+     - fnk
+    ports:
+      - 7528:80
+    restart: unless-stopped
+
+networks:
+  fnk:
+    external: true
