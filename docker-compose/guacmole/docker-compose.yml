@@ -14,5 +14,4 @@ services:
     restart: unless-stopped
     
 networks:
-  dnr:
-    external: true
+  dnr: {}
