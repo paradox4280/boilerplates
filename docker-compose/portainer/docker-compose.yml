@@ -16,8 +16,6 @@ services:
 
 volumes:
    portainer_data:
-     external: true
 
 networks:
-  fnk:
-    external: true
+  fnk: {}
