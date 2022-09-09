@@ -9,28 +9,29 @@ services:
     environment:
       - ASF_ARGS=--server
     networks:
-      - fdn
+      - asf
     ports:
       - 1242:1242
     volumes:
-      - /pkgtk/archisteamfarm/config:/app/config
-      - /pkgtk/archisteamfarm/logs:/app/logs
-      - /pkgtk/archisteamfarm/plugins:/app/plugins
+      - ${ASF_DIR}/config:/app/config
+      - ${ASF_DIR}/logs:/app/logs
+      - ${ASF_DIR}/plugins:/app/plugins
     restart: always
   asfbot:
     image: dmcallejo/asfbot
     container_name: asfbot
     hostname: asfbot
+    depends_on:
+      - asf
     networks:
-      - fdn
+      - asf
     restart: unless-stopped
     command: --host asf
     environment:
-      - TELEGRAM_BOT_TOKEN=
-      - TELEGRAM_USER_ALIAS=
-      - ASF_IPC_PASSWORD=
-      - ASF_IPC_PORT=1242
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+      - TELEGRAM_USER_ALIAS=${TELEGRAM_USER_ALIAS}
+      - ASF_IPC_PASSWORD=${ASF_IPC_PASSWORD}
+      - ASF_IPC_PORT=${ASF_IPC_PORT}
       
 networks:
-  fdn:
-    external: true
+  asf: {}
