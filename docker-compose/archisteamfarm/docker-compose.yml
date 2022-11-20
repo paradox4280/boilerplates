@@ -1,5 +1,5 @@
 ---
-version: "3.5"
+version: '3'
 
 services:
   asf:
@@ -17,6 +17,7 @@ services:
       - /pkgtk/archisteamfarm/logs:/app/logs
       - /pkgtk/archisteamfarm/plugins:/app/plugins
     restart: always
+  
   asfbot:
     image: dmcallejo/asfbot
     container_name: asfbot

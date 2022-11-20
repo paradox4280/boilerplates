@@ -1,5 +1,5 @@
 ---
-version: "3.7"
+version: '3'
 
 services:
   caddy:
@@ -9,7 +9,7 @@ services:
     networks:
      - fnk
     ports:
-      - "443:443"
+      - 443:443
     volumes:
       - /opt/caddy/Caddyfile:/etc/caddy/Caddyfile
       - caddy_data:/data
@@ -20,7 +20,6 @@ volumes:
     external: true
   caddy_config:
     external: true
-
 
 networks:
   fnk:
