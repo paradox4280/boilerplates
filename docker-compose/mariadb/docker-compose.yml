@@ -3,7 +3,7 @@ version: '3'
 
 services:
   mariadb:
-    image: mariadb/mariadb
+    image: mariadb
     container_name: mariadb
     restart: always
     ports:
