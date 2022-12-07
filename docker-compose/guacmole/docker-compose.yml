@@ -8,5 +8,5 @@ services:
     ports:
       - 7952:8080
     volumes:
-      - /pkgtk/guacmole:/config
+      - path/to/guacmole:/config
     restart: unless-stopped
