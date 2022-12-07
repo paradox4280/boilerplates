@@ -8,6 +8,6 @@ services:
     ports:
      - 2322:8989
     volumes:
-     - /pkgtk/Droppy:/config
-     - /pkgtk/Droppy/files:/files
+     - path/to/Droppy:/config
+     - path/to/Droppy/files:/files
     restart: unless-stopped

@@ -8,13 +8,10 @@ services:
     ports:
       - 1199:1194/udp
     volumes:
-      - /opt/openvpn-data:/etc/openvpn
+      - path/to/openvpn:/etc/openvpn
     cap_add:
       - NET_ADMIN
     restart: unless-stopped
-    networks:
-      vpn-network:
-        ipv4_address: 172.20.0.3
 
   pihole:
     container_name: pihole
@@ -31,18 +28,16 @@ services:
       DNS2: 1.0.0.1
       WEBPASSWORD: PASSWORD
     volumes:
-       - /opt/pihole:/etc/pihole
-       - /opt/pihole:/etc/dnsmasq.d
+       - path/to/pihole:/etc/pihole
+       - path/to/pihole:/etc/dnsmasq.d
     dns:
       - 127.0.0.1
       - 1.1.1.1
     cap_add:
       - NET_ADMIN
     restart: unless-stopped
-    networks:
-       vpn-network:
-         ipv4_address: 172.20.0.2
 
 networks:
-  vpn-network:
-    external: true
+  default:
+    external:
+      name: network_name

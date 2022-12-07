@@ -2,35 +2,43 @@
 version: '3'
 
 services:
-  nginx:
-    container_name: nginx-proxy-manager
+  nginx_proxy_manager:
     image: jc21/nginx-proxy-manager:latest
+    container_name: nginx_proxy_manager
+    restart: always
     ports:
       #- 80:80
       - 81:81
       - 443:443
     environment:
-      DB_MYSQL_HOST: 'db'
+      DB_MYSQL_HOST: 'nginx_proxy_manager_db'
       DB_MYSQL_PORT: 3306
-      DB_MYSQL_USER: 'npm'
-      DB_MYSQL_PASSWORD: 'npm'
-      DB_MYSQL_NAME: 'npm'
+      DB_MYSQL_USER: ${DB_MYSQL_USER} # npm
+      DB_MYSQL_PASSWORD: ${DB_MYSQL_PASSWORD} # npm
+      DB_MYSQL_NAME: ${DB_MYSQL_NAME} # npm
+      TP_THEME: ${TP_THEME} # dracula
+      # DISABLE_IPV6: 'true'
+      # DB_SQLITE_FILE: '/data/database.sqlite'
     volumes:
-      - pkgtk/nginx-proxy-manager/data:/data
-      - pkgtk/nginx-proxy-manager/letsencrypt:/etc/letsencrypt
-  db:
-    container_name: ngnix-proxy-manager-db
-    image: jc21/mariadb-aria:latest
-    networks:
-      - nginx-proxy-network
+      - path/to/nginx_proxy_manager/data:/data
+      - path/to/nginx_proxy_manager/letsencrypt:/etc/letsencrypt
+      # - path/to/nginx_proxy_manager/98-themepark:/etc/cont-init.d/99-themepark
+    depends_on:
+      - nginx_proxy_manager_db
+
+  nginx_proxy_manager_db:
+    image: mariadb:latest
+    container_name: ngnix_proxy_manager_db
+    restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: 'npm'
-      MYSQL_DATABASE: 'npm'
-      MYSQL_USER: 'npm'
-      MYSQL_PASSWORD: 'npm'
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${DB_MYSQL_USER}
+      MYSQL_PASSWORD: ${DB_MYSQL_PASSWORD}
     volumes:
-      - /pkgtk/nginx-proxy-manager/data/mysql:/var/lib/mysql
+      - path/to/nginx_proxy_manager/mysql:/var/lib/mysql
 
 networks:
-  nginx-proxy-network:
-    external: true
+  default:
+    external:
+      name: network_name

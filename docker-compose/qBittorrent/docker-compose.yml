@@ -11,8 +11,8 @@ services:
       - TZ=Europe/London
       - WEBUI_PORT=8080
     volumes:
-      - /pkgtk/qBittorrent/config:/config
-      - /pkgtk/qBittorrent/downloads:/downloads
+      - path/to/qBittorrent/config:/config
+      - path/to/qBittorrent/downloads:/downloads
     ports:
       - 6881:6881
       - 6881:6881/udp
