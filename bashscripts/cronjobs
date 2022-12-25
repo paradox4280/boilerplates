@@ -1,3 +1,0 @@
-*/5 * * * * ~/up.sh > /dev/null 2>&1
-
-@reboot ~/up.sh 
