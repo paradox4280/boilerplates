@@ -5,29 +5,22 @@ services:
   archisteamfarm:
     image: justarchi/archisteamfarm:5.3.0.3
     container_name: archisteamfarm
+    restart: unless-stopped
     ports:
       - 1242:1242
     volumes:
-      - path/to/archisteamfarm/config:/app/config
-      - path/to/archisteamfarm/logs:/app/logs
-      - path/to/archisteamfarm/plugins:/app/plugins
-    restart: always
+      - /path/to/archisteamfarm/config:/app/config
+      - /path/to/archisteamfarm/logs:/app/logs
+      - /path/to/archisteamfarm/plugins:/app/plugins
 
   asfbot:
     image: dmcallejo/asfbot
     container_name: asfbot
-    hostname: asfbot
-    command: --host asf
+    restart: unless-stopped
     environment:
       TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN}
       TELEGRAM_USER_ALIAS: ${TELEGRAM_USER_ALIAS}
       ASF_IPC_PASSWORD: ${ASF_IPC_PASSWORD}
       ASF_IPC_PORT: ${ASF_IPC_PORT}
-    restart: always
     depends_on:
       - archisteamfarm
-
-networks:
-  default:
-    external:
-      name: network_name

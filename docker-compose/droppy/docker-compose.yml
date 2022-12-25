@@ -3,11 +3,11 @@ version: '3'
 
 services:
   droppy:
-    container_name: droppy
     image: silverwind/droppy
+    container_name: droppy
+    restart: unless-stopped
     ports:
      - 2322:8989
     volumes:
-     - path/to/Droppy:/config
-     - path/to/Droppy/files:/files
-    restart: unless-stopped
+     - /path/to/Droppy:/config
+     - /path/to/Droppy/files:/files

@@ -1,13 +1,15 @@
+---
 version: '3'
 
 services:
   uptimekuma:
     image: louislam/uptime-kuma
     container_name: uptimekuma
-    ports:
-      - 3340:3001
-    volumes:
-      - /pkgtk/uptimeKuma/data:/app/data
     restart: unless-stopped
+    ports:
+      - 3001:3001
+    volumes:
+      - /path/to/uptimeKuma/data:/app/data
+      - /var/run/docker.sock:/var/run/docker.sock
     security_opt:
       - no-new-privileges:true

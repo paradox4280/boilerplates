@@ -1,0 +1,10 @@
+---
+version: '3'
+
+services:
+  homepage:
+    image: ghcr.io/benphelps/homepage
+    container_name: homepage
+    restart: unless-stopped
+    volumes:
+      - /path/to/:/app/config

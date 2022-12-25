@@ -1,5 +1,5 @@
 ---
-version: '2'
+version: '3'
 
 services:
   homer:
@@ -7,11 +7,11 @@ services:
     #To build from source, comment previous line and uncomment below
     #build: .
     container_name: homer
-    volumes:
-      - /pkgtk/Homer/assets/:/www/assets
-    ports:
-      - 8118:8080
-    #environment:
-    #  - UID=1000
-    #  - GID=1000
     restart: unless-stopped
+    ports:
+      - 8080:8080
+    environment:
+      UID:1000
+      GID:1000
+    volumes:
+      - /path/to/homer/assets/:/www/assets

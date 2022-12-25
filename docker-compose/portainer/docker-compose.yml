@@ -3,19 +3,15 @@ version: '3'
 
 services:
   portainer:
+    image: portainer/portainer-ce:alpine
     container_name: portainer
-    image: portainer/portainer-ce
-    networks:
-      - fnk
+    restart: unless-stopped
     ports:
      - 9000:9000
     volumes:
-     - /var/run/docker.sock:/var/run/docker.sock
      - portainer_data:/data
-    restart: always
+     - /var/run/docker.sock:/var/run/docker.sock
 
 volumes:
-   portainer_data:
-
-networks:
-  fnk: {}
+  portainer_data:
+    name: portainer_data

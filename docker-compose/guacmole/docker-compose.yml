@@ -4,9 +4,9 @@ version: '3'
 services:
   guacmole:
     image: oznu/guacamole
-    container_name: guacmole
+    container_name: guacamole
+    restart: unless-stopped
     ports:
       - 7952:8080
     volumes:
-      - path/to/guacmole:/config
-    restart: unless-stopped
+      - /path/to/guacamole:/config

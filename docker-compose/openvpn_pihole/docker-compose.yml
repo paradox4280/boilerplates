@@ -3,19 +3,20 @@ version: '3'
 
 services:
   openvpn:
-    container_name: openvpn
     image: kylemanna/openvpn
+    container_name: openvpn
+    restart: unless-stopped
     ports:
-      - 1199:1194/udp
+      - 1194:1194/udp
     volumes:
-      - path/to/openvpn:/etc/openvpn
+      - /path/to/openvpn:/etc/openvpn
     cap_add:
       - NET_ADMIN
-    restart: unless-stopped
 
   pihole:
-    container_name: pihole
     image: pihole/pihole
+    container_name: pihole
+    restart: unless-stopped
     ports:
       - 53:53/tcp
       - 53:53/udp
@@ -28,16 +29,10 @@ services:
       DNS2: 1.0.0.1
       WEBPASSWORD: PASSWORD
     volumes:
-       - path/to/pihole:/etc/pihole
-       - path/to/pihole:/etc/dnsmasq.d
+       - /path/to/pihole:/etc/pihole
+       - /path/to/pihole:/etc/dnsmasq.d
     dns:
       - 127.0.0.1
       - 1.1.1.1
     cap_add:
       - NET_ADMIN
-    restart: unless-stopped
-
-networks:
-  default:
-    external:
-      name: network_name

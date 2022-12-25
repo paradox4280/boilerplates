@@ -1,17 +1,18 @@
 ---
-version: "2.1"
+version: '3'
+
 services:
   pyload:
     image: lscr.io/linuxserver/pyload
     container_name: pyload
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Europe/London
-    volumes:
-      - /pkgtk/pyload/config:/config
-      - /pkgtk/pyload/downloads:/downloads
+    restart: unless-stopped
     ports:
       - 8000:8000
       #- 7227:7227 #optional
-    restart: unless-stopped
+    environment:
+      PUID:1000
+      PGID:1000
+      TZ:Europe/London
+    volumes:
+      - /path/to/pyload/config:/config
+      - /path/to/pyload/downloads:/downloads

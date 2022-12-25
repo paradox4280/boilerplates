@@ -6,21 +6,16 @@ services:
     image: caddy:2.4.5-alpine
     container_name: caddy
     restart: unless-stopped
-    networks:
-     - fnk
     ports:
+      - 80:80
       - 443:443
     volumes:
-      - /opt/caddy/Caddyfile:/etc/caddy/Caddyfile
+      - /path/to/caddy/Caddyfile:/etc/caddy/Caddyfile
       - caddy_data:/data
       - caddy_config:/config
 
 volumes:
   caddy_data:
-    external: true
+    name: caddy_data
   caddy_config:
-    external: true
-
-networks:
-  fnk:
-    external: true
+    name: caddy_config

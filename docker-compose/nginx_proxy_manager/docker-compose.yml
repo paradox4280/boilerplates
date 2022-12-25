@@ -3,11 +3,11 @@ version: '3'
 
 services:
   nginx_proxy_manager:
-    image: jc21/nginx-proxy-manager:latest
+    image: jc21/nginx-proxy-manager
     container_name: nginx_proxy_manager
     restart: always
     ports:
-      #- 80:80
+      - 80:80
       - 81:81
       - 443:443
     environment:
@@ -20,9 +20,9 @@ services:
       # DISABLE_IPV6: 'true'
       # DB_SQLITE_FILE: '/data/database.sqlite'
     volumes:
-      - path/to/nginx_proxy_manager/data:/data
-      - path/to/nginx_proxy_manager/letsencrypt:/etc/letsencrypt
-      # - path/to/nginx_proxy_manager/98-themepark:/etc/cont-init.d/99-themepark
+      - /path/to/nginx_proxy_manager/data:/data
+      - /path/to/nginx_proxy_manager/letsencrypt:/etc/letsencrypt
+      # - /path/to/nginx_proxy_manager/98-themepark-npm:/etc/cont-init.d/99-themepark
     depends_on:
       - nginx_proxy_manager_db
 
@@ -36,9 +36,4 @@ services:
       MYSQL_USER: ${DB_MYSQL_USER}
       MYSQL_PASSWORD: ${DB_MYSQL_PASSWORD}
     volumes:
-      - path/to/nginx_proxy_manager/mysql:/var/lib/mysql
-
-networks:
-  default:
-    external:
-      name: network_name
+      - /path/to/nginx_proxy_manager/mysql:/var/lib/mysql

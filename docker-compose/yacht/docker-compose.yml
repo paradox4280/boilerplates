@@ -5,12 +5,13 @@ services:
   yacht:
     image: selfhostedpro/yacht
     container_name: yacht
-    restart: always
+    restart: unless-stopped
     ports:
       - 8000:8000
     volumes:
-      - yacht:/config
+      - yacht_config:/config
       - /var/run/docker.sock:/var/run/docker.sock
 
 volumes:
   yacht:
+    name: yacht_config

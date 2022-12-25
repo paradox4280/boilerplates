@@ -5,6 +5,7 @@ services:
   nda:
     image: netdata/netdata
     container_name: netdata
+    restart: unless-stopped
     ports:
       - 7895:19999
     volumes:
@@ -15,4 +16,3 @@ services:
       - SYS_PTRACE
     security_opt:
       - apparmor=unconfined
-    restart: unless-stopped
