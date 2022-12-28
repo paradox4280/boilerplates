@@ -1,0 +1,6 @@
+1. docker-compose run --rm openvpn ovpn_genconfig -u udp://VPN.SERVERNAME.COM
+2. docker-compose run --rm openvpn ovpn_initpki
+3. export CLIENTNAME="your_client_name"
+4. docker-compose run --rm openvpn easyrsa build-client-full $CLIENTNAME
+4. docker-compose run --rm openvpn easyrsa build-client-full $CLIENTNAME nopass
+5. docker-compose run --rm openvpn ovpn_getclient $CLIENTNAME > $CLIENTNAME.ovpn
